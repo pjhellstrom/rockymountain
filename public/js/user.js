@@ -32,10 +32,14 @@ $(document).ready(function() {
 
   // A function for creating an user. Calls launchMain upon completion
   function upsertUser(userData) {
-    $.post("/api/users", userData).then(launchMain);
+    console.log("upsertUser with userData: ", userData);
+    $.post("/api/users", userData).then(launchMain(userData.name));
   }
 
   function launchMain(user) {
+    $.get("/api/notes", function(data){
+
+    })
     console.log("This will launch main with ", user);
   }
 

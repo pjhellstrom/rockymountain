@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  /* global moment */
-
   // noteContainer holds all of our notes
   var noteContainer = $(".note-container");
   var noteCategorySelect = $("#category");
@@ -10,18 +8,18 @@ $(document).ready(function() {
   // Variable to hold the notes
   var notes;
 
-  // The code below handles the case where we want to get notes for a specific user
-  // Looks for a query param in the url for user_id
-  var url = window.location.search;
-  var userId;
-  if (url.indexOf("?user_id=") !== -1) {
-    userId = url.split("=")[1];
-    getNotes(userId);
-  }
-  // If there's no userId we just get all notes as usual
-  else {
-    getNotes();
-  }
+  // // The code below handles the case where we want to get notes for a specific user
+  // // Looks for a query param in the url for user_id
+  // var url = window.location.search;
+  // var userId;
+  // if (url.indexOf("?user_id=") !== -1) {
+  //   userId = url.split("=")[1];
+  //   getNotes(userId);
+  // }
+  // // If there's no userId we just get all notes as usual
+  // else {
+  //   getNotes();
+  // }
 
   // This function grabs notes from the database and updates the view
   function getNotes(user) {
