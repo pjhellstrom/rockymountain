@@ -11,10 +11,11 @@
     <!-- Bootstrap -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-   
+
 </head>
 <body>
 
+<!-- Login Form -->
 <form action="/action_page.php">
   <div class="imgcontainer">
   </div>
@@ -23,20 +24,56 @@
     <h2>Login</h2>
     <label for="uname"><b></b></label>
     <br>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
+    <input type="text" name="uname" id="user-name" placeholder="Enter Username" class="username" required>
     <label for="psw"><b></b></label>
     <br>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-  
+    <input type="password" name="psw" id="password" placeholder="Enter Password" class="pass" required>
     <button type="submit">Login</button>
     <br>
     <br>
-    <button type="submit">Sign-up</button>
+    <button type="submit" onclick="document.getElementById('id01').style.display='inline-block'" class="signupbtn">Sign-Up</button>
   </div>
 
 </form>
 
+<!-- Sign-Up Form -->
+  
+    <div id="id01" class="modal"> 
+        <form class="modal-content animate" action="/action_page.php"> 
+            <div class="container"> 
+                <h1>Sign-Up</h1>
+    
+                <label><b></b></label> 
+                <input type="text" class="test" placeholder="Enter Username" name="uname" required> 
+  
+                <label><b></b></label> 
+                <input type="password" class="test" placeholder="Enter Password" name="psw" required> 
+                
+                <div class="clearfix test"> 
+                    <button type="submit" class="signupbtn">Sign Up</button>
+                  
+                    <button type="danger" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                
+                </div> 
+            </div> 
+        </form> 
+    </div> 
+  </div>
+  
+    <!--close the modal by just clicking outside of the modal-->
+    <script> 
+        var modal = document.getElementById('id01'); 
+  
+        window.onclick = function(event) { 
+            if (event.target == modal) { 
+                modal.style.display = "none"; 
+            } 
+        } 
+    </script> 
+
+<!-- Javascript -->
+
+ <script src="js/note.js" type="text/javascript"></script>
 
 </body>
 </html>
