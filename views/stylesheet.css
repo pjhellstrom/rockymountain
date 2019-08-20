@@ -1,19 +1,54 @@
-.title {
-    font-family: 'News Cycle', sans-serif;
+.navbar-title {
+    font-family: 'Share Tech Mono', monospace;
     font-size: 50pt;
+    color: #4a7856;
 }
-.subtitle {
-    font-family: 'News Cycle', sans-serif;
+.navbar-subtitle {
+    font-family: 'Share Tech', sans-serif;
+    font-size: 14pt;
+    color: #4a7856;;
+}
+.menu {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: #4a7856;
+    color: rgb(255, 59, 48);
+}
+
+.tile {
+
 }
 
 .menu-list {
-    font-family: 'News Cycle', sans-serif;
+
+    height: 70vh;
 }
 
-.card-header {
-    font-family: 'News Cycle', sans-serif;
+.card {
+    background-color: #4a7856;
+    color: aliceblue;
+}
+.card-header-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20pt;
+    color: #1e3f20;
 }
 
-.contant {
-    font-family: 'Oxygen', sans-serif;
+.card-contant {
+    font-family: 'Share Tech', sans-serif;
+    font-size: 10pt;
+    color: aliceblue;
+
 }
+
+.card-footer {
+    font-family: 'Share Tech', sans-serif;
+    font-size: 10pt;
+    background-color: #94ecbe;
+}
+
+.card-footer-item {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10pt;
+    color: #345830;
+}
+
