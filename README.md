@@ -1,5 +1,4 @@
-![alt text](https://github.com/pjhellstrom/rockymountain/blob/master/public/images/logo.png)[![Rocky Mountain - The future of notetaking]
-  
+![alt text](https://github.com/pjhellstrom/rockymountain/blob/master/public/images/logo.png)
 
 ## This is **Rocky Mountain** - the future of notetaking
 #### *Organize your notes. Organize your life.*
