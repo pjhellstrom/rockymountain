@@ -1,34 +1,25 @@
-// Dependencies
-// =============================================================
-
-// Requiring our models
 var db = require("../models");
 
-// Routes
-// =============================================================
 module.exports = function(app) {
-  // GET route for getting all of the posts
+  // GET route for getting all of the notes
+  // app.get("/api/notes", function(req, res) {
+  //   var query = {};
+  //   if (req.query.user_id) {
+  //     query.UserId = req.query.user_id;
+  //   }
+  //   db.Note.findAll({
+  //     where: query,
+  //     include: [db.User]
+  //   }).then(function(dbNote) {
+  //     res.json(dbNote);
+  //   });
+  // });
   app.get("/api/notes", function(req, res) {
-    var query = {};
-    if (req.query.user_id) {
-      query.UserId = req.query.user_id;
-    }
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.User
-    db.Note.findAll({
-      where: query,
-      include: [db.User]
-    }).then(function(dbNote) {
-      res.json(dbNote);
-    });
+    res.send("Hello World!");
   });
 
-  // Get route for retrieving a single post
-  app.get("/api/posts/:id", function(req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.User
+  // Get route for retrieving a single note
+  app.get("/api/notes/:id", function(req, res) {
     db.Note.findOne({
       where: {
         id: req.params.id
@@ -39,15 +30,15 @@ module.exports = function(app) {
     });
   });
 
-  // POST route for saving a new post
-  app.post("/api/posts", function(req, res) {
+  // POST route for saving a new note
+  app.post("/api/notes", function(req, res) {
     db.Note.create(req.body).then(function(dbNote) {
       res.json(dbNote);
     });
   });
 
-  // DELETE route for deleting posts
-  app.delete("/api/posts/:id", function(req, res) {
+  // DELETE route for deleting notes
+  app.delete("/api/notes/:id", function(req, res) {
     db.Note.destroy({
       where: {
         id: req.params.id
@@ -57,8 +48,8 @@ module.exports = function(app) {
     });
   });
 
-  // PUT route for updating posts
-  app.put("/api/posts", function(req, res) {
+  // PUT route for updating notes
+  app.put("/api/notes", function(req, res) {
     db.Note.update(req.body, {
       where: {
         id: req.body.id

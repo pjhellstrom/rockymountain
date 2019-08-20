@@ -10,4 +10,9 @@ module.exports = function(app) {
   app.get("/main", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/main.html"));
   });
+
+  // jonas-test route loads jonas-test.html
+  app.get("/jonas-test", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/jonas-test.html"));
+  });
 };
