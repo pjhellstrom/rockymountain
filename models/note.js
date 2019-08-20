@@ -1,0 +1,30 @@
+module.exports = function(sequelize, DataTypes) {
+  var Note = sequelize.define("Note", {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    body: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    category: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    format: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
+  });
+
+  Note.associate = function(models) {
+    Note.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  return Note;
+};
