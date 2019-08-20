@@ -1,4 +1,4 @@
-[![Rocky Mountain - The future of notetaking](/public/images/bgimage.jpg "Rocky Mountain - the future of notetaking")](https://young-mesa-34823.herokuapp.com/)
+![alt text](https://github.com/pjhellstrom/rockymountain/blob/master/public/images/logo.png)[![Rocky Mountain - The future of notetaking](https://young-mesa-34823.herokuapp.com/)
   
 
 ## This is **Rocky Mountain** - the future of notetaking
