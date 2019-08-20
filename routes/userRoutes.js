@@ -16,25 +16,3 @@ module.exports = function(app) {
     });
   });
 };
-//   // Get route used to fetch data to populate main screen
-//   app.get("/api/users/:id", function(req, res) {
-//     db.User.findOne({
-//       where: {
-//         id: req.params.id
-//       },
-//       include: [db.Note]
-//     }).then(function(dbUser) {
-//       res.json(dbUser);
-//     });
-//   });
-
-//   app.delete("/api/users/:id", function(req, res) {
-//     db.User.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     }).then(function(dbUser) {
-//       res.json(dbUser);
-//     });
-//   });
-// }
