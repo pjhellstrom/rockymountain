@@ -15,21 +15,50 @@
 </head>
 <body>
 
-<tbody>
-    <tr id="form-row">
-        <form id="user-form">
-            <td colspan="4">
-                <input placeholder="Enter a name" id="user-name" type="text" />
-            </td>
-            <td colspan="4">
-                <input placeholder="Enter a password" id="password" type="text" />
-            </td>
-            <td><button type="submit" class="btn btn-success" id="login-btn">Login</button>
-            <td><button type="submit" class="btn btn-success" id="signup-btn">Sign Up</button>
-            </td>
+<!-- Login Form -->
+<form id="user-form">
+  <div class="imgcontainer">
+  </div>
+
+  <div class="container">
+    <h2>Login</h2>
+    <label for="uname"><b></b></label>
+    <br>
+    <input type="text" name="uname" id="user-name" placeholder="Enter Username" class="username" required>
+    <label for="psw"><b></b></label>
+    <br>
+    <input type="password" name="psw" id="password" placeholder="Enter Password" class="pass" required>
+    <button type="submit"id="login-btn">Login</button>
+    <br>
+    <br>
+    <button type="submit" onclick="document.getElementById('id01').style.display='inline-block'" class="signupbtn">Sign-Up</button>
+  </div>
+
+</form>
+
+<!-- Sign-Up Form -->
+
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="container">
+                <h1>Sign-Up</h1>
+
+                <label><b></b></label>
+                <input type="text" class="test" placeholder="Enter Username" name="uname" id="new-user-name" required>
+
+                <label><b></b></label>
+                <input type="password" class="test" placeholder="Enter Password" name="psw" id="new-password" required>
+
+                <div class="clearfix test">
+                    <button type="submit" class="signupbtn" id="signup-btn">Sign Up</button>
+
+                    <button type="danger" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+
+                </div>
+            </div>
         </form>
-    </tr>
-</tbody>
+    </div>
+  </div>
 
     <!--close the modal by just clicking outside of the modal-->
     <script>
