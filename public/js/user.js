@@ -41,11 +41,13 @@ $(document).ready(function() {
   // A function for creating an user. Calls launchMain upon completion
   function createUser(userData) {
     console.log("createUser with userData: ", userData);
-    $.post("/api/users", userData).then(launchMain(userData.name));
+    $.post("/api/users", userData).then(
+      localStorage(userData.name);
+      launchMain(userData.name));
   }
 
   function launchMain(activeUser) {
-    $.get("/api/notes", function(notes) {
+    $.get("/api/notes?u=" + userId, function(notes) {
       console.log("This will launch main with ", notes, activeUser);
     });
   }
