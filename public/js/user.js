@@ -2,6 +2,8 @@ $(document).ready(function() {
   // Getting references to the name input and user container, as well as the table body
   var nameInput = $("#user-name");
   var passwordInput = $("#password");
+  var newNameInput = $("#new-user-name");
+  var newPasswordInput = $("#new-password");
   var activeUser = {};
 
   // ==========================================================================
@@ -16,11 +18,11 @@ $(document).ready(function() {
     console.log("handleNewUserSubmit has been called");
     // Don't do anything if the username/pw fields haven't been filled out
     if (
-      !nameInput
+      !newNameInput
         .val()
         .trim()
         .trim() ||
-      !passwordInput
+      !newPasswordInput
         .val()
         .trim()
         .trim()
@@ -31,8 +33,8 @@ $(document).ready(function() {
 
     // Calling the createUser function and passing in the username and pw
     createUser({
-      name: nameInput.val().trim(),
-      password: passwordInput.val().trim()
+      name: newNameInput.val().trim(),
+      password: newPasswordInput.val().trim()
     });
   }
 
