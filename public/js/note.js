@@ -1,25 +1,11 @@
 $(document).ready(function() {
-  // noteContainer holds all of our notes
   var noteContainer = $(".note-container");
-  var noteCategorySelect = $("#category");
-  // Click events for the edit and delete buttons
+  // var noteCategorySelect = $("#category");
+  // Click events for buttons
   $(document).on("click", "button.delete", handleNoteDelete);
   $(document).on("click", "button.edit", handleNoteEdit);
   // Variable to hold the notes
   var notes;
-
-  // // The code below handles the case where we want to get notes for a specific user
-  // // Looks for a query param in the url for user_id
-  // var url = window.location.search;
-  // var userId;
-  // if (url.indexOf("?user_id=") !== -1) {
-  //   userId = url.split("=")[1];
-  //   getNotes(userId);
-  // }
-  // // If there's no userId we just get all notes as usual
-  // else {
-  //   getNotes();
-  // }
 
   // This function grabs notes from the database and updates the view
   function getNotes(user) {
@@ -33,7 +19,7 @@ $(document).ready(function() {
       if (!notes || !notes.length) {
         displayEmpty(user);
       } else {
-        initializeRows();
+        initializeNotes();
       }
     });
   }
@@ -48,8 +34,8 @@ $(document).ready(function() {
     });
   }
 
-  // InitializeRows handles appending all of our constructed note HTML inside noteContainer
-  function initializeRows() {
+  // initializeNotes handles appending all of our constructed note HTML inside noteContainer
+  function initializeNotes() {
     noteContainer.empty();
     var notesToAdd = [];
     for (var i = 0; i < notes.length; i++) {
