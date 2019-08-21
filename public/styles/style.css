@@ -39,7 +39,7 @@ hr {
 
 form {
   position: relative;
-  margin-left: 37%;
+  margin: auto;
   width: 350px;
   background: rgba(130,130,130,.3);
   padding: 20px 22px;
@@ -97,6 +97,7 @@ form button[type=submit] {
 
 .modal { 
   display: none;
+  margin: auto;
   position: fixed; 
   z-index: 1; 
   left: 0; 
@@ -113,10 +114,10 @@ form button[type=submit] {
 .modal-content { 
   text-align: center;
   background-color: #b8b3b3;
-  margin: 5% auto 15% auto; 
+  margin: auto; 
   border: 1px solid #888; 
-  width: 40%;
-  height: 40%;
+  width: 50%;
+  height: 50%;
   box-shadow: 20px 10px 20px 20px rgb(49, 47, 47);
   transform: scale(0.9);
   opacity: 0.9;
