@@ -76,24 +76,6 @@ app.get("/login", function(req, res) {
     );
 });
 
-// app.get("/login", redirectHome, function(req, res) {
-//   res.sendFile(path.join(__dirname, "./public/login.html"));
-// });
-
-// app.get("/register", redirectHome, function(req, res) {
-//   res.send(
-//     `
-//     <h1>Register</h1>
-//     <form method="post" action="/register">
-//       <input type="username" name="username" placeholder="Email" required />
-//       <input type="password" name="password" placeholder="Password" required />
-//       <input type="submit" />
-//     </form>
-//     <a href="/login">Login</a>
-//     `
-//   )
-// });
-
 app.post("/login", redirectHome, function(req, res) {
   console.log("In post to login route: ", req.body);
   var username = req.body.username;
@@ -159,6 +141,7 @@ app.post("/register", redirectHome, function(req, res) {
 //     res.json(userNotes);
 //   });
 // });
+
 app.get("/home", redirectLogin, function(req, res) {
   var user = req.locals;
   console.log("session object: ", req.session);
@@ -185,9 +168,12 @@ app.post("/api/notes", function(req, res) {
   db.Note.create({
     title: title,
     body: body,
+    category: 1,
+    format: 1,
     UserId: UserId
   }).then(function(newNote) {
     console.log("New note has been created: ", newNote);
+    res.json(newNote);
   });
 });
 
