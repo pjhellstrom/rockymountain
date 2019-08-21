@@ -11,109 +11,166 @@
     <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/stylesheet.css">
     <script src="https://code.jquery.com/jquery.js"></script>
-    <title>Rocky Mountain</title>
+    <title>Noted.</title>
 </head>
-    <body>
-            <!-- is-family-code -->
-  <section>
-    <div class="hero-head">
-        <nav class="navbar">
-            <h1 class="navbar-title">Rocky Mountain</h1>
-            <h2 class="navbar-subtitle" id="welcome-user">The Future of Note Taking</h2>
-            <div id="navbarMenuHeroA" class="navbar-menu">
-              <div class="navbar-end">
-                  <form method="post" action="/logout">
-                    <button>Logout</button>
-                  </form>
-              </div>
-            </div>
-        </nav>
-    </div>
-  </section>
- <br>
- <br>
-  <div class="tile is-ancestor is-level">
-              <article class="tile is-2 is-parent">
-              <div class="tile is-child is-level-right">
-          <div class="menu">
-              <ul class="menu-list">
-              <a class="is-active has-text-success">Categories</a>
+<body>
+    <!-- is-family-code -->
+<section>
+<div class="hero-head">
 
-              <ul id="category-list">
-              <li><a>To Do lists</a></li>
-              <li><a>Reminders</a></li>
-              <li><a>Daily Journal</a></li>
-              <li><a>Plan and budget</a></li>
-              <li><a>Coders notepad</a></li>
-              <li><a>Letter</a></li>
-              <li><a>Custom</a></li>
-              </ul>
-          </div>
-              </div>
-              </article>
-
-    <div class="tile is-parent is-10 is-level-left" id="notes-container">
-      <div class="tile is-child box is-level-left" id="note">
-          <div class="card column is-4">
-                      <button class="delete"></button>
-            <header class="card-header">
-                <p class="card-header-title" id="note-title">
-                Create new note
-                </p>
-            </header>
-        <div class="card-content" id="note-body">
-            <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-            <br>
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </div>
+<div class="container">
+    <nav class="navbar">
+      <h1 class="navbar-title rubberBand">Noted.</h1>
         </div>
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
+          <h2 class="navbar-subtitle" id="welcome-user">The Future of Note Taking</h2>
+            <div id="navbarMenuHeroA" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item">Sign Out</a>
+
+      </div>
+    </div>
+</nav>
+</div>
+</section>
+<br>
+<br>
+<!-- <div class="tile is-ancestor is-level">
+      <article class="tile is-2 is-parent">
+      <div class="tile is-child is-level-right">
+  <div class="menu">
+      <ul class="menu-list">
+      <a class="is-active has-text-success">Categories</a>
+
+      <ul id="category-list">
+      <li><a>Note</a></li>
+      <li><a>To Do's</a></li>
+      <li><a>Memo</a></li>
+      <li><a>Random</a></li>
+      <li><a>Coder notes</a></li>
+      </ul>
+  </div>
+      </div>
+      </article> -->
+
+<div class="hero-body is-12 is-level" id="notes-container">
+<a class="button is-info is-hovered" id="showModal">New</a>
+
+</div>
+</div>
+   <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+          <header class="modal-card-head">
+          <p class="modal-card-title" id="new-title">Create a Note</p>
+          </header>
+            <section class="modal-card-body" id="new-body">
+              <input class="input" id="titleInput" type="text" placeholder="Title">
+              <textarea class="textarea" id="textInput" placeholder="Enter your note here..."></textarea>
+            </section>
+            <footer class="modal-card-foot">
+              <button class="button is-warning" id="saveModal">Save changes</button>
+              <button class="button" id="closeModal">Cancel</button>
+          </footer>
+      </div>
+  </div>
+</div>
+               <br>
+               <br>
+
+<div class="hero-foot">
+<nav class="content has-text-centered">
+<div class="container">
+<p>
+<strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+<a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+</p>
+</div>
+</div>
+
+  <script>
+
+  // Modal handling ==========================================================
+  $("#showModal").click(function() {
+    $(".modal").addClass("is-active");
+  });
+
+  $("#closeModal").click(function() {
+      $(".modal").removeClass("is-active");
+  });
+
+  // DB Communications - Create New Note =====================================
+  $("#saveModal").click(function() {
+    $(".modal").removeClass("is-active");
+    var title = $('#titleInput').val();
+    var body = $('#textInput').val();
+    $.ajax({
+      url: "api/notes",
+      method: "POST",
+      data: {
+        title: title,
+        body: body
+      }
+    }).then(function( response ) {
+      console.log("Saving note: ", response);
+      populateNote(response);
+    });
+  });
+
+  // DB Communications - Fetch Existing Notes ================================
+
+  populateUserNote();
+
+  function populateUserNote() {
+    $.ajax({
+      url: "/api/notes",
+      method: "GET"
+    }).then(function( response ) {
+      console.log("Grabbing notes: ", response);
+      for (var i = 0; i < response.length; i++) {
+        $('#notes-container').prepend(`
+          <div class="tile is-child box is-level-left" id="note">
+            <div class="card column is-4">
+              <header class="card-header">
+                <p class="card-header-title" id="note-title">${response[i].title}</p>
+              </header>
+              <div class="card-content" id="note-body">
+                <div class="content">${response[i].body}</div>
+              </div>
+              <footer class="card-footer">
                 <a href="#" class="card-footer-item">Edit</a>
                 <a href="#" class="card-footer-item">Delete</a>
+              </footer>
+            </div>
+          </div>`)
+        }
+    });
+    }
+
+  function populateNote(response) {
+    $('#notes-container').prepend(`
+        <div class="tile is-child box is-level-left" id="note">
+          <div class="card column is-4">
+            <header class="card-header">
+              <p class="card-header-title" id="note-title">${response[0].title}</p>
+            </header>
+            <div class="card-content" id="note-body">
+              <div class="content">${response[0].body}</div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Edit</a>
+              <a href="#" class="card-footer-item">Delete</a>
             </footer>
-              </div>
-        </div>
-    </div>
-  </div>
-
-           <div class="modal">
-              <div class="modal-background"></div>
-              <div class="modal-card">
-                  <header class="modal-card-head">
-                  <p class="modal-card-title">Create a Note</p>
-                  <button class="delete" aria-label="close"></button>
-                  </header>
-                  <section class="modal-card-body">
-                  <!-- Content ... -->
-                  </section>
-                  <footer class="modal-card-foot">
-                  <button class="button is-warning">Save changes</button>
-                  <button class="button is-">Cancel</button>
-                  </footer>
-              </div>
           </div>
-  </div>
-                       <br>
-                       <br>
+        </div>`)
+  }
 
-  <div class="hero-foot">
-  <nav class="content has-text-centered">
-      <div class="container">
-      <p>
-        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-      </p>
-    </div>
-  </div>
-
-
+  </script>
     <!-- Moment Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
  <!-- Custom Script -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
- <script src="js/note.js" type="text/javascript"></script>
+ <!-- <script src="js/note.js" type="text/javascript"></script> -->
+
       </body>
     </html>
