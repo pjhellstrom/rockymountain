@@ -1,21 +1,21 @@
 .navbar-title {
     font-family: 'Share Tech Mono', monospace;
     font-size: 50pt;
-    color: #4a7856;
+    color: #1d263b;
 }
 .navbar-subtitle {
     font-family: 'Share Tech', sans-serif;
     font-size: 14pt;
-    color: #4a7856;;
+    color: #1d263b;
 }
 .menu {
     font-family: 'Share Tech Mono', monospace;
-    background-color: #4a7856;
+    background-color:  #5c6784;
     color: rgb(255, 59, 48);
 }
 
 .tile {
-
+    background-color: #5c6784;
 }
 
 .menu-list {
@@ -24,19 +24,19 @@
 }
 
 .card {
-    background-color: #4a7856;
-    color: aliceblue;
+    background-color: #a0eade;
+    color: white;
 }
 .card-header-title {
     font-family: 'Share Tech Mono', monospace;
     font-size: 20pt;
-    color: #1e3f20;
+    color: #5c6784;
 }
 
 .card-contant {
     font-family: 'Share Tech', sans-serif;
     font-size: 10pt;
-    color: aliceblue;
+    color: #a0eade;
 
 }
 
@@ -49,6 +49,5 @@
 .card-footer-item {
     font-family: 'Share Tech Mono', monospace;
     font-size: 10pt;
-    color: #345830;
+    color:  #5c6784;
 }
-
