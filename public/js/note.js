@@ -1,4 +1,21 @@
 $(document).ready(function() {
+
+loadNotes();
+
+function loadNotes() {
+  var activeUser = req.session.userId;
+  console.log("activeUser is: ", activeUser);
+
+  $.get("api/users/" + activeUser, function(data) {
+    console.log("Notes returned: ", userId);
+  });
+
+};
+
+
+
+
+
   var noteContainer = $(".note-container");
   // var noteCategorySelect = $("#category");
   // Click events for buttons
