@@ -113,7 +113,7 @@
 
 .navbar-item {
   width: 150px;
-  margin-bottom: 0;
+  margin-bottom: 0 auto;
   color:white;
   letter-spacing: .4em;
   text-shadow: 0 1px 0 #133d3e;
@@ -123,7 +123,15 @@
 }
 
 #showModal {
-  color: red;
+
+  text-align: center;
+  width: 300px;
+  height: 300;
+  margin: 0 auto;
+  color:white;
+  letter-spacing: .4em;
+  background-color: #133d3e;
+
 }
 #notes-container {
   background: rgba(130,130,130,.3);
@@ -157,4 +165,24 @@
   font-family: 'Share Tech Mono', monospace;
   font-size: 10pt;
   color:  #5c6784;
+}
+
+.format-1 {
+  background-color: #133d3e;
+}
+
+.format-2 {
+  background-color: #5c6784;
+}
+
+.format-3 {
+  background-color: bisque;
+}
+
+.format-4 {
+  background-color: black;
+}
+
+.format-5 {
+  background-color: rebeccapurple;
 }
