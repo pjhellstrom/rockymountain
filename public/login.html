@@ -11,15 +11,22 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="./styles/style.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rock+Salt">
 </head>
 <body>
 
+<!-- Title -->
+    <h1>Noted.</h1>
+
 <!-- Login Form -->
+
 <form id="user-form" method="post" action="/login">
   <div class="imgcontainer">
   </div>
     <div class="container">
     <h2>Login</h2>
+    <hr>
     <label for="uname"><b></b></label>
     <br>
     <input type="text" name="username" id="user-name" placeholder="Enter Username" class="username" required />
@@ -39,15 +46,15 @@
     <div id="id01" class="modal">
         <form class="modal-content animate" method="post" action="/register">
             <div class="container">
-                <h1>Sign-Up</h1>
-
+                <p>Sign-Up</p>
+                <hr>
                 <label><b></b></label>
                 <input type="text" class="test" placeholder="Enter Username" name="username" id="new-user-name" required />
 
+            <div class="clearfix test">
                 <label><b></b></label>
                 <input type="password" class="test" placeholder="Enter Password" name="password" id="new-password" required />
                 <button type="submit"id="signup-btn">Submit</button>
-                <div class="clearfix test">
 
 
                     <!-- <button type="submit" class="signupbtn" id="signup-btn">Sign Up</button> -->
