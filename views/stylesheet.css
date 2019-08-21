@@ -1,30 +1,137 @@
+.hero {
+    background-color: white;
+}
+
+.hero-body {
+    height: 80vh;
+}
+.container {
+    text-align: center;
+    font-family: "Helvetica";
+    font-weight: 90;
+    font-size: 30px;
+    background-color: rgba(60,60,60,.4);
+    color: rgb(252, 253, 253);
+}
 .navbar-title {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 50pt;
-    color: #1d263b;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Rock Salt";
+    font-size: 90px;
+    color: black;      
 }
+
 .navbar-subtitle {
-    font-family: 'Share Tech', sans-serif;
-    font-size: 14pt;
-    color: #1d263b;
-}
-.menu {
-    font-family: 'Share Tech Mono', monospace;
-    background-color:  #5c6784;
-    color: rgb(255, 59, 48);
+    margin: 0 auto;
+    text-align: center;
+    font-family: "helvetica";
+    font-size: 20px;
+    color: black;      
 }
 
-.tile {
-    background-color: #5c6784;
+@-webkit-keyframes rubberBand {
+    from {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+      transform: scale3d(1.25, 0.75, 1);
+    }
+  
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+      transform: scale3d(0.75, 1.25, 1);
+    }
+  
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+      transform: scale3d(1.15, 0.85, 1);
+    }
+  
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+      transform: scale3d(0.95, 1.05, 1);
+    }
+  
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+      transform: scale3d(1.05, 0.95, 1);
+    }
+  
+    to {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  @keyframes rubberBand {
+    from {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+      transform: scale3d(1.25, 0.75, 1);
+    }
+  
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+      transform: scale3d(0.75, 1.25, 1);
+    }
+  
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+      transform: scale3d(1.15, 0.85, 1);
+    }
+  
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+      transform: scale3d(0.95, 1.05, 1);
+    }
+  
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+      transform: scale3d(1.05, 0.95, 1);
+    }
+  
+    to {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  .rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+  }
+  
+.navbar-item {
+    width: 150px;
+    margin-bottom: 0;
+    color:white;
+    letter-spacing: .4em;
+    text-shadow: 0 1px 0 #133d3e;
+    text-transform: uppercase;
+    background:  rgb(0,122,255);
+    cursor: pointer;
 }
 
-.menu-list {
-
-    height: 70vh;
+#showModal {
+    color: red;
+}
+#notes-container {
+    background: rgba(130,130,130,.3);
+    color: #133d3e;
 }
 
-.card {
-    background-color: #a0eade;
+.modal-card {
+   background-color: rgba(0,0,0,.2);
     color: white;
 }
 .card-header-title {
