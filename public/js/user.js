@@ -1,8 +1,8 @@
 $(document).ready(function() {
-  // Getting references to the name input and user container, as well as the table body
-  var nameInput = $("#user-name");
+  // Getting references to the username input and user container, as well as the table body
+  var nameInput = $("#user-username");
   var passwordInput = $("#password");
-  var newNameInput = $("#new-user-name");
+  var newNameInput = $("#new-user-username");
   var newPasswordInput = $("#new-password");
   var activeUser = {};
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     // Calling the createUser function and passing in the username and pw
     createUser({
-      name: newNameInput.val().trim(),
+      username: newNameInput.val().trim(),
       password: newPasswordInput.val().trim()
     });
   }
@@ -41,8 +41,7 @@ $(document).ready(function() {
   // A function for creating an user. Calls launchMain upon completion
   function createUser(userData) {
     console.log("createUser with userData: ", userData);
-    localStorage.setItem(userData.name);
-    $.post("/api/users", userData).then(launchMain(userData.name));
+    $.post("/api/users", userData).then(launchMain(userData.username));
   }
 
   function launchMain(activeUser) {
@@ -78,7 +77,7 @@ $(document).ready(function() {
     }
     // Calling the createUser function and passing in the username and pw
     validateUser({
-      name: nameInput.val().trim(),
+      username: nameInput.val().trim(),
       password: passwordInput.val().trim()
     });
   }
@@ -90,14 +89,14 @@ $(document).ready(function() {
       console.log("Returning login get request data: ", users);
       var foundUser = users.find(function(user) {
         if (
-          user.name === userData.name &&
+          user.username === userData.username &&
           user.password === userData.password
         ) {
           console.log("Matching user and pw found, ok to proceed!");
           activeUser =
             users[
               users.findIndex(function(user) {
-                return user.name === userData.name;
+                return user.username === userData.username;
               })
             ];
           console.log("activeUser: ", activeUser);
