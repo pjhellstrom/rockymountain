@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rock+Salt"> 
     <link rel="stylesheet" href="./styles/stylesheet.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <title>Noted.</title>
@@ -16,47 +16,24 @@
 <body>
     <!-- is-family-code -->
 <section>
-<div class="hero-head">
-
-<div class="container">
-    <nav class="navbar">
-      <h1 class="navbar-title rubberBand">Noted.</h1>
-        </div>
+  <div class="hero-head">
+    <div class="container">
+      <nav class="navbar">
+        <h1 class="navbar-title rubberBand">Noted.</h1> </div>
           <h2 class="navbar-subtitle" id="welcome-user">The Future of Note Taking</h2>
+            </nav>
             <div id="navbarMenuHeroA" class="navbar-menu">
-            <div class="navbar-end">
-              <a class="navbar-item">Sign Out</a>
-
-      </div>
-    </div>
-</nav>
-</div>
+              <div class="navbar-end"><a class="navbar-item">Sign Out</a></div>
+            </div>
+          </div>
 </section>
-<br>
-<br>
-<!-- <div class="tile is-ancestor is-level">
-      <article class="tile is-2 is-parent">
-      <div class="tile is-child is-level-right">
-  <div class="menu">
-      <ul class="menu-list">
-      <a class="is-active has-text-success">Categories</a>
 
-      <ul id="category-list">
-      <li><a>Note</a></li>
-      <li><a>To Do's</a></li>
-      <li><a>Memo</a></li>
-      <li><a>Random</a></li>
-      <li><a>Coder notes</a></li>
-      </ul>
-  </div>
-      </div>
-      </article> -->
-
+<br>
+<div class="hero-body is-12 is-level">
+<a class="button is-info is-hovered is-center" id="showModal">New</a>
 <div class="hero-body is-12 is-level" id="notes-container">
-<a class="button is-info is-hovered" id="showModal">New</a>
+</div>
 
-</div>
-</div>
    <div class="modal">
       <div class="modal-background"></div>
       <div class="modal-card">
@@ -73,20 +50,10 @@
           </footer>
       </div>
   </div>
-</div>
+
                <br>
                <br>
 
-<div class="hero-foot">
-<nav class="content has-text-centered">
-<div class="container">
-<p>
-<strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-<a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-</p>
-</div>
-</div>
 
   <script>
 
@@ -129,7 +96,7 @@ is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC
       console.log("Grabbing notes: ", response);
       for (var i = 0; i < response.length; i++) {
         $('#notes-container').prepend(`
-          <div class="tile is-child box is-level-left" id="note">
+          <div class="tile is-child box is-level-left format${response[i].format}" id="note">
             <div class="card column is-4">
               <header class="card-header">
                 <p class="card-header-title" id="note-title">${response[i].title}</p>
