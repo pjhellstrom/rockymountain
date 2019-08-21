@@ -77,14 +77,6 @@ app.get("/login", function(req, res) {
     );
 });
 
-app.get("/home", redirectLogin, function(req, res) {
-  var user = req.locals;
-  console.log("session object: ", req.session);
-  console.log("session user id: ", req.session.userId);
-  res.sendFile(path.join(__dirname, "./public/main.html"));
-  // Code to populate cards
-});
-
 // app.get("/login", redirectHome, function(req, res) {
 //   res.sendFile(path.join(__dirname, "./public/login.html"));
 // });
@@ -126,7 +118,6 @@ app.post("/login", redirectHome, function(req, res) {
       // Redirect to home page
       return res.redirect("/home");
     } else {
-
       res.sendFile(path.join(__dirname, "./public/loginerror.html"));
     }
   });
@@ -159,14 +150,44 @@ app.post("/register", redirectHome, function(req, res) {
   }
 });
 
-app.get("api/users/:id", function(req, res) {
-  var activeUser = req.params.id;
+// app.get("api/users/:id", function(req, res) {
+//   var activeUser = req.params.id;
+//   db.Note.findAll({
+//     where: {
+//       UserId: activeUser
+//     }
+//   }).then(function(userNotes) {
+//     res.json(userNotes);
+//   });
+// });
+app.get("/home", redirectLogin, function(req, res) {
+  var user = req.locals;
+  console.log("session object: ", req.session);
+  console.log("session user id: ", req.session.userId);
+
   db.Note.findAll({
     where: {
-      UserId: activeUser
+      UserId: req.session.userId
     }
-  }).then(function(userNotes) {
-    res.json(userNotes);
+  }).then(function(notesFound){
+    console.log("for user ")
+    res.json(notesFound);
+  });
+
+  res.sendFile(path.join(__dirname, "./public/main.html"));
+  // Code to populate cards
+});
+
+app.post("api/notes", function(req, res) {
+  var title = req.body.title;
+  var body = req.body.body;
+  var UserId = req.session.userId;
+  db.Note.create({
+    title: title,
+    body: body,
+    UserId: UserId
+  }).then(function(newNote) {
+    console.log("New note has been created: ", newNote);
   });
 });
 
