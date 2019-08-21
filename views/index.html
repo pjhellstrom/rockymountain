@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rock+Salt"> 
     <link rel="stylesheet" href="./stylesheet.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <title>Rocky Mountain</title>
@@ -17,15 +17,16 @@
             <!-- is-family-code -->
   <section>
     <div class="hero-head">
-        <nav class="navbar">
-            <h1 class="navbar-title">Noted</h1>
-            <h2 class="navbar-subtitle" id="welcome-user">The Future of Note Taking</h2> 
-            <div id="navbarMenuHeroA" class="navbar-menu">
-              <div class="navbar-end">
-              <a class="navbar-item">
-                Sign Out
-              </a>
-              <button id="showModal">New</button>
+        <div class="container">
+            <nav class="navbar">
+              <h1 class="navbar-title rubberBand">Noted.</h1>
+                </div>
+                  <h2 class="navbar-subtitle" id="welcome-user">The Future of Note Taking</h2> 
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div class="navbar-end">
+                      <a class="navbar-item">Sign Out</a>
+                     
+              <!-- <button id="showModal">New</button> -->
               </div>
             </div>
         </nav>
@@ -33,7 +34,7 @@
   </section>
  <br>
  <br>
-  <div class="tile is-ancestor is-level">
+  <!-- <div class="tile is-ancestor is-level">
               <article class="tile is-2 is-parent">
               <div class="tile is-child is-level-right">
           <div class="menu">
@@ -49,10 +50,10 @@
               </ul>
           </div>
               </div>
-              </article>
+              </article> -->
 
-    <div class="tile is-parent is-10 is-level-left" id="notes-container">
-      
+    <div class="hero-body is-12 is-level" id="notes-container">
+        <a class="button is-info is-hovered" id="showModal">New</a>
     </div>
   </div>
            <div class="modal">
@@ -60,7 +61,6 @@
               <div class="modal-card">
                   <header class="modal-card-head">
                   <p class="modal-card-title" id="new-title">Create a Note</p>
-                  <button class="delete" aria-label="close" id="closeModal"></button>
                   </header>
                     <section class="modal-card-body" id="new-body">
                       <input class="input" id="titleInput" type="text" placeholder="Title">
@@ -68,7 +68,7 @@
                     </section>
                     <footer class="modal-card-foot">
                       <button class="button is-warning" id="saveModal">Save changes</button>
-                      <button class="button">Cancel</button>
+                      <button class="button" id="closeModal">Cancel</button>
                   </footer>
               </div>
           </div>
@@ -128,7 +128,6 @@
         $('#notes-container').prepend(`
     <div class="tile is-child box is-level-left" id="note">
           <div class="card column is-4">
-                      <button class="delete"></button>
             <header class="card-header">
                 <p class="card-header-title" id="note-title">${response[i].title}</p>
             </header>
@@ -136,7 +135,6 @@
             <div class="content">${response[i].body}</div>
         </div>
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
                 <a href="#" class="card-footer-item">Edit</a>
                 <a href="#" class="card-footer-item">Delete</a>
             </footer>
@@ -148,7 +146,6 @@
     $('#notes-container').prepend(`
     <div class="tile is-child box is-level-left" id="note">
           <div class="card column is-4">
-                      <button class="delete"></button>
             <header class="card-header">
                 <p class="card-header-title" id="note-title">${response.title}</p>
             </header>
@@ -156,7 +153,6 @@
             <div class="content">${response.body}</div>
         </div>
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
                 <a href="#" class="card-footer-item">Edit</a>
                 <a href="#" class="card-footer-item">Delete</a>
             </footer>
