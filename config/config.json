@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "r00tr00t",
+    "password": "12345678",
     "database": "rockymountaindb",
     "host": "localhost",
     "dialect": "mysql"

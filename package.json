@@ -1,0 +1,31 @@
+{
+  "name": "rockymountain",
+  "version": "1.0.0",
+  "description": "![alt text](https://github.com/pjhellstrom/rockymountain/blob/master/public/images/notedlogo.png)",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjhellstrom/rockymountain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pjhellstrom/rockymountain/issues"
+  },
+  "homepage": "https://github.com/pjhellstrom/rockymountain#readme"
+}
