@@ -1,6 +1,6 @@
-![alt text](https://github.com/pjhellstrom/rockymountain/blob/master/public/images/logo.png)
+![alt text](https://github.com/pjhellstrom/rockymountain/blob/master/public/images/notedlogo.png)
 
-## This is **Rocky Mountain** - the future of notetaking
+## This is **Noted.** - The Future of Notetaking
 #### *Organize your notes. Organize your life.*
   
   
@@ -18,7 +18,7 @@ Use Rocky Mountain everyday to keep your thoughts in one place and keep your lif
     *"Journaling is like whispering to one's self and listening at the same time."*  
     Record your everyday thoughts in your daily journal. Discover something new about the world and about yourself.  
 
-- Plan amd Budget  
+- Plan and Budget  
     *"Show me where you spend your money and I’ll tell you what your priorities are."*  
     Use Rocky Mountain to create a budget and actually stick to it. Track what you spend your money on and learn what your priorities are.
 

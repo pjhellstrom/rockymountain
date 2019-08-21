@@ -1,23 +1,16 @@
 $(document).ready(function() {
+  loadNotes();
 
-loadNotes();
+  function loadNotes() {
+    var activeUser = req.session.userId;
+    console.log("activeUser is: ", activeUser);
 
-function loadNotes() {
-  var activeUser = req.session.userId;
-  console.log("activeUser is: ", activeUser);
+    $.get("api/users/" + activeUser, function(data) {
+      console.log("Notes returned: ", userId);
+    });
+  }
 
-  $.get("api/users/" + activeUser, function(data) {
-    console.log("Notes returned: ", userId);
-  });
-
-};
-
-
-
-
-
-  var noteContainer = $(".note-container");
-  // var noteCategorySelect = $("#category");
+  var notesContainer = $(".notes-container");
   // Click events for buttons
   $(document).on("click", "button.delete", handleNoteDelete);
   $(document).on("click", "button.edit", handleNoteEdit);
@@ -26,10 +19,6 @@ function loadNotes() {
 
   // This function grabs notes from the database and updates the view
   function getNotes(user) {
-    userId = user || "";
-    if (userId) {
-      userId = "/?user_id=" + userId;
-    }
     $.get("/api/notes" + userId, function(data) {
       console.log("Notes", data);
       notes = data;
@@ -51,14 +40,14 @@ function loadNotes() {
     });
   }
 
-  // initializeNotes handles appending all of our constructed note HTML inside noteContainer
+  // initializeNotes handles appending all of our constructed note HTML inside notesContainer
   function initializeNotes() {
-    noteContainer.empty();
+    notesContainer.empty();
     var notesToAdd = [];
     for (var i = 0; i < notes.length; i++) {
       notesToAdd.push(createNewRow(notes[i]));
     }
-    noteContainer.append(notesToAdd);
+    notesContainer.append(notesToAdd);
   }
 
   // This function constructs a note's HTML
@@ -127,7 +116,7 @@ function loadNotes() {
     if (id) {
       partial = " for User #" + id;
     }
-    noteContainer.empty();
+    notesContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
     messageH2.html(
@@ -137,6 +126,6 @@ function loadNotes() {
         query +
         "'>here</a> in order to get started."
     );
-    noteContainer.append(messageH2);
+    notesContainer.append(messageH2);
   }
 });
