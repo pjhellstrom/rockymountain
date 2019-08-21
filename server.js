@@ -164,21 +164,22 @@ app.get("/home", redirectLogin, function(req, res) {
   var user = req.locals;
   console.log("session object: ", req.session);
   console.log("session user id: ", req.session.userId);
+  res.sendFile(path.join(__dirname, "./public/main.html"));
+  // Code to populate cards
+});
 
+app.get("/api/notes", function(req, res) {
   db.Note.findAll({
     where: {
       UserId: req.session.userId
     }
   }).then(function(notesFound){
-    console.log("for user ")
+    console.log("for user ", req.session.userId, " found notes : ", notesFound)
     res.json(notesFound);
   });
-
-  res.sendFile(path.join(__dirname, "./public/main.html"));
-  // Code to populate cards
 });
 
-app.post("api/notes", function(req, res) {
+app.post("/api/notes", function(req, res) {
   var title = req.body.title;
   var body = req.body.body;
   var UserId = req.session.userId;
