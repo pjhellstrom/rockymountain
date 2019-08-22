@@ -120,7 +120,7 @@ app.post("/register", redirectHome, function(req, res) {
     if (foundUser.length > 0) {
       console.log("Database returned allUsers: ", foundUser[0].dataValues);
       console.log("WARNING This user already exists!");
-      res.sendFile(path.join(__dirname, "./public/duplicate.html"));
+      res.sendFile(path.join(__dirname, "./public/duplicateerror.html"));
     } else {
       db.User.create(req.body).then(function(newUser) {
         console.log("Adding new user to DB: ", newUser);
