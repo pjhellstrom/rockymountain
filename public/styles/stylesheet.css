@@ -11,6 +11,7 @@
 #title-logo {
   margin-left: 20px;
   font-weight: bold;
+  font-family: "Rock Salt";
 }
 
 #note-styling {
@@ -40,8 +41,8 @@
 
 #new-button-container {
   position: absolute;
-  bottom: 10%;
-  right: 10%;
+  bottom: 40%;
+  right: 50%;
 }
 
 .create-new-button {
