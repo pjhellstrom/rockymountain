@@ -14,7 +14,7 @@
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <title>Noted. - The Future of Note Taking</title>
 </head>
-<body onload="prettyprint()">
+<body>
 
   <section class="hero is-white is-large is-fullheight" id="hero-section">
     <div class="hero-head header-light" id="header-styling">
@@ -127,17 +127,17 @@
 <script>
 
   // Logout listener ==================================================================
-  function deleteNote(id) {
-  $.ajax({
-    method: "DELETE",
-    url: "/api/notes/" + id
-  })
+  $("#logout-btn").click( function(){
+    console.log("Logout button clicked!")
+    $.ajax({
+    method: "POST",
+    url: "/logout"
+    })
     .then(function() {
-      $("#notes-container").empty();
-      populateUserNote();
+      console.log("Successfully logged out!");
+      window.location.replace("login.html");
     });
-  }
-
+  })
 
   // New Note Modal handling ==========================================================
   $("#showModal").click(function() {
@@ -188,6 +188,16 @@ $(document).on("click", ".edit-note", function() {
   $("#editModal").addClass("is-active");
   console.log("the id for this note edit: ", idNote);
 
+  // First send GET req to to grab existing note body
+  $.ajax({
+    method: "GET",
+    url: "/api/notes/edit/" + idNote
+  })
+  .then(function(response) {
+    console.log("client received this response with note body: ", response[0].body);
+    $("#textEditInput").val(response[0].body);
+  });
+
   // Listener for save click submits a put req
   $("#saveEditModal").click( function() {
     var newBody = $("#textEditInput").val();
@@ -202,6 +212,7 @@ $(document).on("click", ".edit-note", function() {
           }
       })
       .then(function() {
+        $("#textEditInput").val("");
         $("#notes-container").empty();
         populateUserNote();
       });
@@ -272,7 +283,7 @@ $(document).on("click", ".edit-note", function() {
                     <br>
                     ${response[i].category === "code" ?
                     `<p id="note-body">
-                      <pre class="prettyprint">${response[i].body}</pre>
+                      <pre class="prettyprint pln">${response[i].body}</pre>
                     </p>`
                     :
                     `<p id="note-body">
@@ -419,7 +430,7 @@ $(document).on("click", ".edit-note", function() {
                     <br>
                     ${response[i].category === "code" ?
                     `<p id="note-body">
-                      <pre class="prettyprint">${response[i].body}</pre>
+                      <pre class=prettyprint pln">${response[i].body}</pre>
                     </p>`
                     :
                     `<p id="note-body">

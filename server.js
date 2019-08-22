@@ -17,8 +17,9 @@ app.use(bodyParser.json());
 app.use(session({
   name: SESS_NAME,
   secret: "asecret",
-  cookie: { maxAge: 1000 * 60 * 5}
+  cookie: { maxAge: 1000 * 60 * 15}
 }));
+
 app.use(express.static("./public"));
 
 // Routes
@@ -163,6 +164,17 @@ app.get("/api/notes", function(req, res) {
   });
 });
 
+app.get("/api/notes/search/:searchterm", function(req, res) {
+  db.Note.findAll({
+    where: {
+      UserId: req.session.userId
+    }
+  }).then(function(notesFound){
+    // console.log("for user ", req.session.userId, " found notes : ", notesFound)
+    res.json(notesFound);
+  });
+});
+
 app.get("/api/notes/:category", function(req, res) {
   db.Note.findAll({
     where: {
@@ -188,6 +200,19 @@ app.post("/api/notes", function(req, res) {
   }).then(function(newNote) {
     // console.log("New note has been created: ", newNote);
     res.json(newNote);
+  });
+});
+
+app.get("/api/notes/edit/:id", function(req, res) {
+  console.log("in get to id number: ", req.params.id);
+  db.Note.findAll({
+    where: {
+      id: req.params.id,
+      UserId: req.session.userId
+    }
+  }).then(function(noteBody){
+    console.log("existing Note body found: ", noteBody);
+    res.json(noteBody);
   });
 });
 
@@ -217,13 +242,15 @@ app.put("/api/notes/:id", function(req, res) {
 });
 // LOGOUT =====================================================================
 app.post("/logout", redirectLogin, function(req, res) {
+  console.log("logout post route reached!")
   req.session.destroy( function(err){
     if (err) {
-      return res.redirect("/home")
+      console.log("logout post route ran into error!")
+      return res.redirect("/home");
     }
-
     res.clearCookie(SESS_NAME);
-    res.redirect("/login");
+    res.send(200);
+    console.log("logout post route sending login.html!");
   })
 });
 
