@@ -16,9 +16,9 @@
 </head>
 <body>
 
-  <section class="hero is-white is-large is-fullheight" id="hero-section">
+<section class="hero is-white is-large is-fullheight is-flex" id="hero-section">
     <div class="hero-head header-light" id="header-styling">
-      <nav class="navbar">
+      <nav class="navbar is-flex">
         <div class="container">
           <div class="navbar-brand">
             <a class="navbar-item">
@@ -27,19 +27,18 @@
           </div>
           <div id="navbarMenuHeroB" class="navbar-menu">
             <div class="navbar-end">
-              <span class="navbar-item">
-                  <a class="button is-dark is-inverted" id="mode-toggle">
-                    <span>Theme</span>
-                  </a>
-                  <a class="button is-danger is-inverted" id="logout-btn">
-                    <span>Logout</span>
-                  </a>
-                  <!-- <a class="button is-danger is-inverted">
-                    <form method="post" action="/logout">
-                      <span>Logout</span>
-                    </form>
-                  </a> -->
-
+              <span class="navbar-item input-group">
+                <input id='searchText' type="text" class="input" placeholder="Search notes">
+                  <div class="input-group-append">
+                    <a class="button" id='searchBtn'><i class="fas fa-search"></i></a>
+                      <!-- <button id='searchBtn' class="btn btn-lg btn-secondary" type="button"><i class="fas fa-search fa-2x"></i></button> -->
+                  </div>
+              </span>
+            <span class="navbar-item">
+              <a class="button is-dark is-inverted" id="mode-toggle">
+            <span>Theme</span></a>
+              <a class="button is-danger is-inverted" id="logout-btn">
+            <span>Logout</span></a>
               </span>
             </div>
           </div>
@@ -138,6 +137,14 @@
       window.location.replace("login.html");
     });
   })
+
+  // Search listerner ================================================================
+  var searchterm = "";
+  $("#searchBtn").on("click", function(){
+    // debugger;
+    searchterm = $("#searchText").val();
+    populateSearchNotes(searchterm);
+  });
 
   // New Note Modal handling ==========================================================
   $("#showModal").click(function() {
@@ -467,6 +474,82 @@ $(document).on("click", ".edit-note", function() {
       }
     });
     }
+
+    function populateSearchNotes(searchterm) {
+      var queryURL = "/api/notes/search/" + searchterm
+      $.ajax({
+          url: queryURL,
+          method:"GET"
+      })
+      .then(function( response ) {
+      // console.log("Grabbing notes: ", response);
+      $("#notes-container").empty();
+      // If no notes exist yet, display starter message
+      if (response.length < 1) {
+        $('#notes-container').prepend(`
+        <div class="hero-body">
+            <div class="container has-text-centered">
+              <h1 class="title">
+                No notes in this category yet.
+              </h1>
+              <h2 class="subtitle">
+                Time to add some!
+              </h2>
+            </div>
+          </div>
+        `);
+      } else {
+        // else loop through response and populate notes
+      for (var i = 0; i < response.length; i++) {
+        $('#notes-container').prepend(`
+        <div class="box note-box category-${response[i].category} note-light" id="note-styling">
+            <article class="media">
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong id="note-title-style">${response[i].title}</strong>
+                    <br>
+                    <small>Created on ${moment(response[i].createdAt).format("MMM D, YYYY")}</small>
+                    <br>
+                    ${response[i].category === "code" ?
+                    `<p id="note-body">
+                      <pre class=prettyprint pln">${response[i].body}</pre>
+                    </p>`
+                    :
+                    `<p id="note-body">
+                      ${response[i].body}
+                    </p>`
+                    }
+                  </p>
+                </div>
+                <nav class="level is-mobile">
+                  <div class="level-left">
+                    <a href="#" class="level-item edit-note" id="${response[i].id}" aria-label="edit">
+                      <span class="icon is-small">
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                    <a class="level-item" aria-label="share">
+                      <span class="icon is-small">
+                        <i class="fas fa-share" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="level-right">
+                      <a href="#" class="level-item delete-note" id="${response[i].id}" aria-label="delete">
+                      <span class="icon is-small" id="deleteIcon">
+                        <i class="fas fa-trash" aria-hidden="true"></i>
+                      </span>
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </article>
+          </div>`)
+        }
+      }
+    })
+    };
 
 </script>
 <!-- Moment Script -->
