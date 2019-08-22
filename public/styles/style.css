@@ -48,6 +48,7 @@ form {
   border-left-color: rgba(255,255,255,.4);
   border-bottom-color: rgba(60,60,60,.4);
   border-right-color: rgba(60,60,60,.4);
+  padding-bottom: 5%;
 }
 
 form input, form button {
