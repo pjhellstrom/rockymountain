@@ -127,17 +127,16 @@
 <script>
 
   // Logout listener ==================================================================
-  function deleteNote(id) {
-  $.ajax({
-    method: "DELETE",
-    url: "/api/notes/" + id
-  })
+  $("#logout-btn").click( function(){
+    console.log("Logout button clicked!")
+    $.ajax({
+    method: "POST",
+    url: "/logout"
+    })
     .then(function() {
-      $("#notes-container").empty();
-      populateUserNote();
+      console.log("Successfully logged out!")
     });
-  }
-
+  })
 
   // New Note Modal handling ==========================================================
   $("#showModal").click(function() {
