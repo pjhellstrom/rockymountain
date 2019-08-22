@@ -49,8 +49,8 @@
 
 #new-button-container {
   position: absolute;
-  bottom: 40%;
-  right: 50%;
+  bottom: 10%;
+  right: 10%;
 }
 
 .create-new-button {
