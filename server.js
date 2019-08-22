@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser")
 var session = require("express-session");
+var Sequelize = require("sequelize");
 var path = require("path");
 var db = require("./models");
 
@@ -165,8 +166,13 @@ app.get("/api/notes", function(req, res) {
 });
 
 app.get("/api/notes/search/:searchterm", function(req, res) {
+  var Op = Sequelize.Op;
+  var searchValue = req.params.searchterm.toLowerCase();
   db.Note.findAll({
     where: {
+      title: {
+        [Op.like]: '%' + searchValue + '%'
+      },
       UserId: req.session.userId
     }
   }).then(function(notesFound){
