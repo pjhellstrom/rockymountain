@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(session({
   name: SESS_NAME,
   secret: "asecret",
-  cookie: { maxAge: 1000 * 60 }
+  cookie: { maxAge: 1000 * 60 * 5}
 }));
 app.use(express.static("./public"));
 
@@ -75,24 +75,6 @@ app.get("/login", function(req, res) {
     path.join(__dirname, "./public/login.html")
     );
 });
-
-// app.get("/login", redirectHome, function(req, res) {
-//   res.sendFile(path.join(__dirname, "./public/login.html"));
-// });
-
-// app.get("/register", redirectHome, function(req, res) {
-//   res.send(
-//     `
-//     <h1>Register</h1>
-//     <form method="post" action="/register">
-//       <input type="username" name="username" placeholder="Email" required />
-//       <input type="password" name="password" placeholder="Password" required />
-//       <input type="submit" />
-//     </form>
-//     <a href="/login">Login</a>
-//     `
-//   )
-// });
 
 app.post("/login", redirectHome, function(req, res) {
   console.log("In post to login route: ", req.body);
@@ -159,6 +141,7 @@ app.post("/register", redirectHome, function(req, res) {
 //     res.json(userNotes);
 //   });
 // });
+
 app.get("/home", redirectLogin, function(req, res) {
   var user = req.locals;
   console.log("session object: ", req.session);
@@ -167,13 +150,26 @@ app.get("/home", redirectLogin, function(req, res) {
   // Code to populate cards
 });
 
+// NOTES ======================================================================
+
 app.get("/api/notes", function(req, res) {
   db.Note.findAll({
     where: {
       UserId: req.session.userId
     }
   }).then(function(notesFound){
-    console.log("for user ", req.session.userId, " found notes : ", notesFound)
+    // console.log("for user ", req.session.userId, " found notes : ", notesFound)
+    res.json(notesFound);
+  });
+});
+
+app.get("/api/notes/:category", function(req, res) {
+  db.Note.findAll({
+    where: {
+      category: req.params.category,
+      UserId: req.session.userId
+    }
+  }).then(function(notesFound){
     res.json(notesFound);
   });
 });
@@ -181,16 +177,45 @@ app.get("/api/notes", function(req, res) {
 app.post("/api/notes", function(req, res) {
   var title = req.body.title;
   var body = req.body.body;
+  var category = req.body.category;
   var UserId = req.session.userId;
   db.Note.create({
     title: title,
     body: body,
+    category: category,
+    format: 1,
     UserId: UserId
   }).then(function(newNote) {
-    console.log("New note has been created: ", newNote);
+    // console.log("New note has been created: ", newNote);
+    res.json(newNote);
   });
 });
 
+app.delete("/api/notes/:id", function(req, res) {
+  db.Note.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(dbPost) {
+    // console.log("Note has been deleted: ", dbPost);
+    res.json(dbPost);
+  });
+});
+
+app.put("/api/notes/:id", function(req, res) {
+  console.log("req.body in put request is: ", req.body);
+  db.Note.update(
+    req.body,
+    {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbPost) {
+    console.log("Note has been edited: ", dbPost);
+    res.json(dbPost);
+  });
+});
+// LOGOUT =====================================================================
 app.post("/logout", redirectLogin, function(req, res) {
   req.session.destroy( function(err){
     if (err) {
