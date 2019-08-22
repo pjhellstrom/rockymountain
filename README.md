@@ -27,7 +27,7 @@ Use  - Noted . -  everyday to keep your thoughts in one place and keep your life
     Rocky Mountain creators has a soft spot for fellow developers. We understand that life can be hectic so we are adding this feature to enable you to code on the go.
 
 - Custom  
-    Create anything want. The possibilities are endless.   
+    Create anything you want. The possibilities are endless.   
       
         
  
