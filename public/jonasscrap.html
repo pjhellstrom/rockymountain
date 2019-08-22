@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rock+Salt">
+    <link rel="stylesheet" href="./styles/stylesheet.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <title>Noted.</title>
+</head>
+<body>
+    <!-- is-family-code -->
+<section>
+  <div class="hero-head is-primary">
+    <div class="container">
+      <nav class="navbar">
+        <h1 class="navbar-title rubberBand">Noted.</h1> </div>
+          <h2 class="navbar-subtitle" id="welcome-user">The Future of Note Taking</h2>
+      </nav>
+    <div id="navbarMenuHeroA" class="navbar-menu">
+			<form method="post" action="/logout">
+				<button>Logout</button>
+			</form>
+    </div>
+  </div>
+</section>
+
+<br>
+<div class="hero-body is-12 is-level">
+<a class="button is-info is-hovered is-center" id="showModal">New</a>
+<div class="hero-body is-12 is-level" id="notes-container">
+</div>
+
+   <div class="modal" id="newModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+          <header class="modal-card-head">
+          <p class="modal-card-title" id="new-title">Create a Note</p>
+          </header>
+            <section class="modal-card-body" id="new-body">
+              <input class="input" id="titleInput" type="text" placeholder="Title">
+              <textarea class="textarea" id="textInput" placeholder="Enter your note here..."></textarea>
+            </section>
+            <footer class="modal-card-foot">
+              <button class="button is-warning" id="saveModal">Save</button>
+              <button class="button" id="closeModal">Cancel</button>
+          </footer>
+      </div>
+  </div>
+
+  <div class="modal" id="editModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+        <p class="modal-card-title" id="new-title">Edit your Note</p>
+        </header>
+          <section class="modal-card-body" id="new-body">
+            <textarea class="textarea" id="textEditInput" placeholder="Enter new note here..."></textarea>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-warning" id="saveEditModal">Save</button>
+            <button class="button" id="closeEditModal">Cancel</button>
+        </footer>
+    </div>
+</div>
+
+               <br>
+               <br>
+
+
+  <script>
+
+  // New Note Modal handling ==========================================================
+  $("#showModal").click(function() {
+    $("#newModal").addClass("is-active");
+  });
+
+  $("#closeModal").click(function() {
+      $("#newModal").removeClass("is-active");
+  });
+
+  // Edit Note Modal handling ==========================================================
+  // NOTE: Modal opening is handled in editNote function
+  $("#closeEditModal").click(function() {
+      $("#editModal").removeClass("is-active");
+  });
+
+  // Delete Note ===============================================================
+  $(document).on("click", ".delete-note", function() {
+        return deleteNote($(this).attr("id"));
+  });
+
+  function deleteNote(id) {
+  $.ajax({
+    method: "DELETE",
+    url: "/api/notes/" + id
+  })
+    .then(function() {
+      $("#notes-container").empty();
+      populateUserNote();
+    });
+  }
+
+// Edit Note ===============================================================
+$(document).on("click", ".edit-note", function() {
+  var idNote = $(this).attr("id");
+  $("#editModal").addClass("is-active");
+  console.log("the id for this note edit: ", idNote);
+
+  // Listener for save click submits a put req
+  $("#saveEditModal").click( function() {
+    var newBody = $("#textEditInput").val();
+    console.log("INSIDE saveEditModal id for this note edit: ", idNote);
+    console.log("INSIDE saveEditModal newBody for this note edit: ", newBody);
+    $("#editModal").removeClass("is-active");
+      $.ajax({
+        method: "PUT",
+        url: "/api/notes/" + idNote,
+          data: {
+            body: newBody
+          }
+      })
+      .then(function() {
+        $("#notes-container").empty();
+        populateUserNote();
+      });
+  });
+});
+
+  // DB Communications - Create New Note =====================================
+  $("#saveModal").click( function() {
+    $("#newModal").removeClass("is-active");
+    var title = $('#titleInput').val();
+    var body = $('#textInput').val();
+    var format = "";
+    $.ajax({
+      url: "/api/notes",
+      method: "POST",
+      data: {
+        title: title,
+        body: body
+      }
+    }).then( function( response ) {
+      console.log("Saving note: ", response);
+      $("#notes-container").empty();
+      populateUserNote();
+    });
+  });
+
+  // DB Communications - Fetch Existing Notes ================================
+
+  populateUserNote();
+
+  function populateUserNote() {
+    $.ajax({
+      url: "/api/notes",
+      method: "GET"
+    }).then(function( response ) {
+      console.log("Grabbing notes: ", response);
+      for (var i = 0; i < response.length; i++) {
+        $('#notes-container').prepend(`
+          <div class="tile is-child box is-level-left format-${response[i].format}" id="note">
+            <div class="card column is-4">
+              <header class="card-header">
+                <p class="card-header-title" id="note-title">${response[i].title}</p>
+              </header>
+              <div class="card-content" id="note-body">
+                <div class="content">${response[i].body}</div>
+              </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item edit-note" id="${response[i].id}">Edit</a>
+                <a href="#" class="card-footer-item delete-note" id="${response[i].id}">Delete</a>
+              </footer>
+            </div>
+          </div>`)
+        }
+    });
+    }
+
+  </script>
+    <!-- Moment Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+ <!-- Custom Script -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+ <!-- <script src="js/note.js" type="text/javascript"></script> -->
+
+      </body>
+    </html>

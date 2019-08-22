@@ -1,33 +1,146 @@
-.hero {
-  background-color: white;
+* {
+  margin: 0;
+  padding: 0;
 }
-
 .hero-body {
   height: 80vh;
-}
-.container {
-  text-align: center;
-  font-family: "Helvetica";
-  font-weight: 90;
-  font-size: 30px;
-  background-color: rgba(60,60,60,.4);
-  color: rgb(252, 253, 253);
-}
-.navbar-title {
-  margin: 0 auto;
-  text-align: center;
-  font-family: "Rock Salt";
-  font-size: 90px;
-  color: black;
+  position: relative;
+  overflow: scroll;
 }
 
-.navbar-subtitle {
-  margin: 0 auto;
-  text-align: center;
-  font-family: "helvetica";
-  font-size: 20px;
-  color: black;
+#title-logo {
+  margin-left: 20px;
+  font-weight: bold;
 }
+
+#note-styling {
+  box-shadow: 2px 2px 6px 5px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+}
+
+#note-title-style {
+  font-size: 2rem;
+}
+
+#deleteIcon {
+  color: rgb(223, 93, 70);
+}
+
+#header-styling {
+  box-shadow: 0px 2px 6px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-light {
+  background-color: rgb(250, 203, 49);
+}
+
+.header-dark {
+  background-color: rgb(37, 64, 151);
+}
+
+#new-button-container {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+}
+
+.create-new-button {
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 2px 2px 6px 3px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+}
+
+.create-new-button span {
+  position: absolute;
+  bottom: 5%;
+  right: 30%;
+  font-size: 3rem;
+  /* border: 2px solid red; */
+}
+
+.new-button-light {
+  background-color: rgb(56, 56, 56);
+}
+
+.new-button-light:hover {
+  background-color: rgb(14, 14, 14);
+}
+
+.new-button-light span {
+  color: #FFF;
+}
+
+.new-button-dark {
+  background-color: rgb(30, 75, 172);
+}
+
+.new-button-dark:hover {
+  background-color: rgb(18, 44, 100);
+}
+
+.new-button-dark span {
+  color: #FFF;
+}
+
+.modal-card-head {
+  background-color: rgb(250, 203, 49);
+  font-weight: bold;
+}
+
+.modal-header-light {
+  background-color: rgb(250, 203, 49);
+}
+
+.modal-header-dark {
+  background-color: rgb(30, 75, 172);
+}
+
+.modal-title-dark {
+  color: #FFF;
+}
+
+.note-box {
+  position:relative;
+}
+
+.note-dark {
+  background-color: #333;
+}
+
+.category-label {
+  position: absolute;
+  top: 25px;
+  right: 22px;
+  color: #999;
+}
+
+
+.format-1 {
+  background-color: #133d3e;
+}
+
+.format-2 {
+  background-color: #5c6784;
+}
+
+.format-3 {
+  background-color: bisque;
+}
+
+.format-4 {
+  background-color: black;
+}
+
+.format-5 {
+  background-color: rebeccapurple;
+}
+
+
+
 
 @-webkit-keyframes rubberBand {
   from {
@@ -106,83 +219,127 @@
 .rubberBand {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
-  animation-duration: 3s;
+  animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
 }
 
-.navbar-item {
-  width: 150px;
-  margin-bottom: 0 auto;
-  color:white;
-  letter-spacing: .4em;
-  text-shadow: 0 1px 0 #133d3e;
-  text-transform: uppercase;
-  background:  rgb(0,122,255);
-  cursor: pointer;
+/*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+.prettyprint {
+  background: #222;
+  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+  border: 0 !important;
 }
 
-#showModal {
-
-  text-align: center;
-  width: 300px;
-  height: 300;
-  margin: 0 auto;
-  color:white;
-  letter-spacing: .4em;
-  background-color: #133d3e;
-
-}
-#notes-container {
-  background: rgba(130,130,130,.3);
-  color: #133d3e;
+.pln {
+  color: #fff;
 }
 
-.modal-card {
- background-color: rgba(0,0,0,.2);
-  color: white;
-}
-.card-header-title {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 20pt;
-  color: #5c6784;
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #666666;
 }
 
-.card-contant {
-  font-family: 'Share Tech', sans-serif;
-  font-size: 10pt;
-  color: #a0eade;
-
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  padding-left: 1em;
+  background-color: #000;
+  list-style-type: decimal;
 }
 
-.card-footer {
-  font-family: 'Share Tech', sans-serif;
-  font-size: 10pt;
-  background-color: #94ecbe;
-}
+@media screen {
 
-.card-footer-item {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10pt;
-  color:  #5c6784;
-}
+  /* string content */
 
-.format-1 {
-  background-color: #133d3e;
-}
+  .str {
+    color: #6f0;
+  }
 
-.format-2 {
-  background-color: #5c6784;
-}
+  /* keyword */
 
-.format-3 {
-  background-color: bisque;
-}
+  .kwd {
+    color: #f60;
+  }
 
-.format-4 {
-  background-color: black;
-}
+  /* comment */
 
-.format-5 {
-  background-color: rebeccapurple;
+  .com {
+    color: #93c;
+  }
+
+  /* type name */
+
+  .typ {
+    color: #458;
+  }
+
+  /* literal value */
+
+  .lit {
+    color: #458;
+  }
+
+  /* punctuation */
+
+  .pun {
+    color: #fff;
+  }
+
+  /* lisp open bracket */
+
+  .opn {
+    color: #fff;
+  }
+
+  /* lisp close bracket */
+
+  .clo {
+    color: #fff;
+  }
+
+  /* markup tag name */
+
+  .tag {
+    color: #fff;
+  }
+
+  /* markup attribute name */
+
+  .atn {
+    color: #9c9;
+  }
+
+  /* markup attribute value */
+
+  .atv {
+    color: #6f0;
+  }
+
+  /* declaration */
+
+  .dec {
+    color: #fff;
+  }
+
+  /* variable name */
+
+  .var {
+    color: #fff;
+  }
+
+  /* function name */
+
+  .fun {
+    color: #fc0;
+  }
 }
