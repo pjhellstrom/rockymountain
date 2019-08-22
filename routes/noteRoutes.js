@@ -13,7 +13,7 @@ var db = require("../models");
 //     res.json(dbNote);
 //   });
 // });
-app.get("/api/notes", function(req, res) {
+app.get("/home/personal", function(req, res) {
   res.send("Hello World!");
 });
 
