@@ -29,11 +29,13 @@
 </section>
 
 <br>
-<div class="hero-body is-12 is-level">
-<a class="button is-info is-hovered is-center" id="showModal">New</a>
+<!-- <div class="hero-body is-12 is-level" id="notes-container"></div> -->
+<!-- <div class="hero-body is-12 is-level"> -->
+<a class="button is-info is-hovered  is-rounded" id="showModal">+</a>
 <div class="hero-body is-12 is-level" id="notes-container">
 </div>
 
+<!-- Modal -->
    <div class="modal">
       <div class="modal-background"></div>
       <div class="modal-card">
@@ -96,9 +98,9 @@
       console.log("Grabbing notes: ", response);
       for (var i = 0; i < response.length; i++) {
         $('#notes-container').prepend(`
-          <div class="tile is-child box is-level-left format${response[i].format}" id="note">
+        <div class="is-level-left format${response[i].format}" id="note">
             <div class="card column is-4">
-              <header class="card-header">
+              <header class="card-header"
                 <p class="card-header-title" id="note-title">${response[i].title}</p>
               </header>
               <div class="card-content" id="note-body">

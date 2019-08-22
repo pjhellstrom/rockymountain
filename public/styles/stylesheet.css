@@ -17,7 +17,7 @@
   margin: 0 auto;
   text-align: center;
   font-family: "Rock Salt";
-  font-size: 90px;
+  font-size: 70px;
   color: black;
 }
 
@@ -25,7 +25,7 @@
   margin: 0 auto;
   text-align: center;
   font-family: "helvetica";
-  font-size: 20px;
+  font-size: 15px;
   color: black;
 }
 
@@ -113,23 +113,22 @@
 
 .navbar-item {
   width: 150px;
+  height: 100;
   margin-bottom: 0 auto;
   color:white;
   letter-spacing: .4em;
   text-shadow: 0 1px 0 #133d3e;
   text-transform: uppercase;
-  background:  rgb(0,122,255);
+  background: rgb(235, 182, 48);
   cursor: pointer;
 }
 
 #showModal {
-
   text-align: center;
-  width: 300px;
-  height: 300;
+  font-size: 40px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
-  color:white;
-  letter-spacing: .4em;
   background-color: #133d3e;
 
 }
