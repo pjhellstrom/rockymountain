@@ -51,7 +51,7 @@ form {
 }
 
 form input, form button {
-  width: 212px;
+  width: -webkit-fill-available;
   border: 1px solid;
   border-bottom-color: rgba(255,255,255,.5);
   border-right-color: rgba(60,60,60,.35);
@@ -59,13 +59,14 @@ form input, form button {
   border-left-color: rgba(80,80,80,.45);
   background-color: rgba(0,0,0,.2);
   background-repeat: no-repeat;
-  padding: 8px 24px 8px 10px;
+  padding: 8px 10px 8px 10px;
   font-family: bold .875em/1.25em "arial", sans-serif;
   letter-spacing: .075em;
   color: #fff;
   text-shadow: 0 1px 0 rgba(0,0,0,.1);
   margin-bottom: 19px;
   margin-left: 15%;
+  margin-right: 15%;
 }
 
 form input:focus { background-color: rgba(0,0,0,.4); }
@@ -84,8 +85,11 @@ form input.pass {
 ::-moz-placeholder { color: #ccc; text-transform: uppercase; }
 :-ms-input-placeholder { color: #ccc; text-transform: uppercase; }
 
+.container-signup-fields {
+  width: 100%;
+}
+
 form button[type=submit] {
-  width: 248px;
   margin-bottom: 0;
   color:white;
   letter-spacing: .05em;
@@ -93,6 +97,7 @@ form button[type=submit] {
   text-transform: uppercase;
   background:  rgb(0,122,255);
   cursor: pointer;
+  width: -webkit-fill-available;
 }
 
 .modal { 
@@ -109,6 +114,7 @@ form button[type=submit] {
   background-color: rgba(0, 0, 0, 0.4); 
   padding-top: 60px; 
 } 
+
 /*define the modal-content background*/ 
 
 .modal-content { 
@@ -125,16 +131,45 @@ form button[type=submit] {
 } 
 
 .cancelbtn { 
-  width: 248px;
+  margin-bottom: 0;
+  color:white;
   letter-spacing: .05em;
   text-shadow: 0 1px 0 #133d3e;
   text-transform: uppercase;
-  cursor: pointer; 
-  background-color: rgb(173, 44, 15); 
+  cursor: pointer;
+  background: rgb(173, 44, 15); 
+  margin: auto;
+  width: -webkit-fill-available;
 } 
 
 .test, .test button {
   display: block;
   margin: 15px auto;
-
+  width: 100%;
+  padding: 10px 1px;
 }
+
+/*iPhone 5*/
+@media only screen and (min-width: 320px) and (max-height: 568px) and (orientation : portrait) {
+  }
+
+/*iPhone 6,7,8*/
+@media only screen and (min-width: 375px) and (max-height: 667px) and (orientation : portrait) {
+  }
+    
+/*iPhone 6+,7+,8+*/
+@media only screen and (min-width: 414px) and (max-height: 736px) and (orientation : portrait) {
+  }
+
+/*iPhone X*/
+@media only screen and (min-width: 375px) and (max-height: 812px) and (orientation : portrait) {
+  }
+
+/*iPhone XS Max, XR*/
+@media only screen and (min-width: 414px) and (max-height: 896px) and (orientation : portrait) {
+  }  
+
+/*iPad*/
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
+  }
+  
