@@ -29,6 +29,14 @@
 
 #header-styling {
   box-shadow: 0px 2px 6px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.navbar-menu-j {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
 }
 
 .header-light {
@@ -139,8 +147,6 @@
 .format-5 {
   background-color: rebeccapurple;
 }
-
-
 
 
 @-webkit-keyframes rubberBand {

@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome | Rocky Mountain</title>
+
+    <!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styles/style.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rock+Salt">
 </head>
 <body>
-  <h1>Oops, that user already exists!</h1>
-  <script>
-    setTimeout(redirectNow, 2000);
-    function redirectNow() {
-      window.location.href = "http://localhost:3000/login";
-    }
-  </script>
+
+<!-- Title -->
+    <h1>Noted.</h1>
+
+<!-- Login Form -->
+
+<form id="user-form" method="post" action="/login">
+  <div class="imgcontainer">
+  </div>
+    <div class="container">
+    <h2>Oops!</h2>
+    <h3>That user already exists!</h3>
+  </div>
+
+</form>
+
+
+<!-- Javascript -->
+
+<script>
+  setTimeout(redirectNow, 2000);
+  function redirectNow() {
+    window.location.href = "http://localhost:3000/login";
+  }
+</script>
+
 </body>
 </html>
